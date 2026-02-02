@@ -1,0 +1,7 @@
+pandas
+scikit-learn
+boto3
+sagemaker<3
+seaborn
+numpy<=2.2
+

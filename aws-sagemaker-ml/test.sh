@@ -1,5 +1,5 @@
 #!/bin/bash
 
 . ~/aws.env
-. ~/python-jupyter/bin/activate
-python sagemaker-deploy.py
+. ./python-sagemaker/bin/activate
+python test_model.py

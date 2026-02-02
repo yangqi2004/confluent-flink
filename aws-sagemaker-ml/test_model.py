@@ -5,17 +5,17 @@ import json
 import pandas as pd
 import os
 
-for dirname, _, filenames in os.walk('/home/qyang/data/healthcare/'):
+for dirname, _, filenames in os.walk('~/data/'):
     for filename in filenames:
         print(os.path.join(dirname, filename))
 
 
-X_test = pd.read_csv('/home/qyang/data/healthcare/healthcare_dataset.csv')
+X_test = pd.read_csv('./data/healthcare_dataset.csv')
 
 runtime_client = boto3.client('sagemaker-runtime')
 content_type = "application/json"
 
-input_data = X_test.iloc[1:30].to_json()
+input_data = X_test.iloc[31:100].to_json()
 request_body = {"Input": input_data}
 data = json.loads(json.dumps(request_body))
 payload = json.dumps(data)
