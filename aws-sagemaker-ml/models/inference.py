@@ -18,7 +18,9 @@ input_fn
 def input_fn(request_body, request_content_type):
     if request_content_type == 'application/json':
         request_body = json.loads(request_body)
-        inpVar = pd.json_normalize(request_body['Input'])
+	#input_data = input_data["Input"]
+	# = pd.json_normalize(json.loads(input_data))
+        inpVar = pd.json_normalize(json.loads(request_body['Input']))
         #inpVar = pd.DataFrame(json.loads(request_body['Input']))
         return inpVar
     else:
