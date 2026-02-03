@@ -1,6 +1,7 @@
 import joblib
 import os
 import json
+import pandas as pd
 
 """
 Deserialize fitted model
@@ -17,7 +18,8 @@ input_fn
 def input_fn(request_body, request_content_type):
     if request_content_type == 'application/json':
         request_body = json.loads(request_body)
-        inpVar = request_body['Input']
+        inpVar = pd.json_normalize(request_body['Input'])
+        #inpVar = pd.DataFrame(json.loads(request_body['Input']))
         return inpVar
     else:
         raise ValueError("This model only supports application/json input")
@@ -39,6 +41,6 @@ output_fn
 
 def output_fn(prediction, content_type):
     #res = int(prediction[0])
-    res = prediction.values.tolist()
-    respJSON = {'Output': res }
+    res = json.dumps(prediction.tolist())
+    respJSON = {'Output': res}
     return respJSON
