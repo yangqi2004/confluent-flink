@@ -26,7 +26,7 @@ payload = json.dumps(data)
 # print(new_df)
 
 
-endpoint_name = "qyang-healthcare-ep23-19-04"
+endpoint_name = "qyang-healthcare-ep21-34-53"
 
 response = runtime_client.invoke_endpoint(
     EndpointName=endpoint_name,

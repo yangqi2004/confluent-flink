@@ -17,8 +17,9 @@ region = 'us-east-1'
 
 print(region)
 sagemaker_session = sagemaker.Session()
-role = "get the execution role"
-
+role = "arn:aws:iam::829250931565:role/service-role/AmazonSageMakerAdminIAMExecutionRole_1"
+# role = sagemaker.get_execution_role()
+print(role)
 
 # retrieve sklearn image
 image_uri = sagemaker.image_uris.retrieve(
@@ -35,7 +36,8 @@ default_bucket = sagemaker_session.default_bucket()
 
 
 
-model_path=default_bucket + "/shared/model.tar.gz"
+model_path="s3://" + default_bucket + "/shared/model.tar.gz"
+model_path="s3://amazon-sagemaker-829250931565-us-east-1-59r7k7fax6wn1j/shared/model.tar.gz"
 
 print(model_path)
 
