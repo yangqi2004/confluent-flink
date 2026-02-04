@@ -17,11 +17,11 @@ input_fn
 """
 def input_fn(request_body, request_content_type):
     if request_content_type == 'application/json':
-        request_body = json.loads(request_body)
-	#input_data = input_data["Input"]
-	# = pd.json_normalize(json.loads(input_data))
-        inpVar = pd.json_normalize(json.loads(request_body['Input']))
-        #inpVar = pd.DataFrame(json.loads(request_body['Input']))
+        #print(request_body)
+        request_json = json.loads(request_body)
+        #print("request_json")
+        #print(request_json)
+        inpVar = pd.json_normalize(request_json)
         return inpVar
     else:
         raise ValueError("This model only supports application/json input")
@@ -42,7 +42,7 @@ output_fn
 """
 
 def output_fn(prediction, content_type):
-    #res = int(prediction[0])
-    res = json.dumps(prediction.tolist())
-    respJSON = {'Output': res}
-    return respJSON
+    res = int(prediction[0])
+    resJson = {'Output': res}
+    resString = json.dumps(resJson)
+    return resString
